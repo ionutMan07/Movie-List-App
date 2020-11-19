@@ -34,7 +34,7 @@ const SearchBox = () => {
 
   const localMovieAdd = (movie) => {
     setMovies([]);
-    movie.onMovieAdd(movie);
+    props.onMovieAdd(movie);
   };
 
   return (
