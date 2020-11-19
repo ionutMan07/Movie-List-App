@@ -28,7 +28,7 @@ const MovieList = (props) => {
   );
 };
 
-const SearchBox = () => {
+const SearchBox = (props) => {
   const [term, setTerm] = useState('');
   const [movies, setMovies] = useState([]);
 
