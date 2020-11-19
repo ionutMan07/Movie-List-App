@@ -1,0 +1,10 @@
+.main{
+    margin-top: 10px;
+}
+.listItem .add_movie {
+    display: none;
+}
+
+.listItem:hover > .add_movie{
+    display:flex;
+}

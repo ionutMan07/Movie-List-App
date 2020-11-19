@@ -1,17 +1,31 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
 import Header from './shared/Header'
-import ListPage from './list/ListPage';
+import SearchBox from './search/SearchBox'
+import SavedMovies from './SavedMovies/SavedMovies'
 
-const items = [{id:1},{id:2}];
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <ListPage items={items}/>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    savedMovies: []
+  }
+handleAddMovie = (movie)=>{
+   const movies = this.state.savedMovies.concat(movie)
+   this.setState({
+     savedMovies: movies
+   })
 }
 
-export default App;
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <SearchBox  onMovieAdd={this.handleAddMovie}/>
+        <SavedMovies savedMovies={this.state.savedMovies} />
+      </div>
+    )
+  }
+}
+
+export default App
