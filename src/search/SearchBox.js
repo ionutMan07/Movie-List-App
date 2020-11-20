@@ -11,6 +11,9 @@ const MovieList = (props) => {
         {props.movies.map((movie) => (
           <li className={styles.listItem} key={movie.id}>
             <b>{movie.title}</b> ({movie.release_date})
+            <div>
+              <img src={`http://image.tmdb.org/t/p/w154/${movie.poster_path}`} alt='logo' />
+              </div>
             <Button
               className="Add Movie"
               color="secondary"
