@@ -9,7 +9,8 @@ const MovieList = (props) => {
     <div className={styles.listItem}>
       <ul>
         {props.movies.map((movie) => (
-          <li className={styles.listItem} key={movie.id}> {}
+          <li className={styles.listItem} key={movie.id}>
+            <b>{movie.title}</b> ({movie.release_date})
             <div>
               <img src={`http://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt='logo' />
               </div>
