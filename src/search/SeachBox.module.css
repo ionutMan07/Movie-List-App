@@ -8,3 +8,6 @@
 .listItem:hover > .add_movie{
     display:flex;
 }
+.listItem {
+    display: flex;
+    }

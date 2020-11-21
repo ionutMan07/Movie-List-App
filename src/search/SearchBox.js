@@ -6,7 +6,7 @@ import styles from './SearchBox';
 
 const MovieList = (props) => {
   return (
-    <div>
+    <div className={styles.listItem}>
       <ul>
         {props.movies.map((movie) => (
           <li className={styles.listItem} key={movie.id}>
