@@ -12,7 +12,7 @@ const MovieList = (props) => {
           <li className={styles.listItem} key={movie.id}>
             <b>{movie.title}</b> ({movie.release_date})
             <div>
-              <img src={`http://image.tmdb.org/t/p/w154/${movie.poster_path}`} alt='logo' />
+              <img src={`http://image.tmdb.org/t/p/w300/${movie.poster_path}`} alt='logo' />
               </div>
             <Button
               className="Add Movie"
@@ -24,6 +24,8 @@ const MovieList = (props) => {
             >
               <AddIcon /> Add Movie
             </Button>
+            <p style={{fontWeight:'bold'}}>Description</p>
+              <p>{movie.overview}</p>
           </li>
         ))}
       </ul>
@@ -49,6 +51,12 @@ const SearchBox = (props) => {
         onChange={(e) => {
           setTerm(e.target.value);
         }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+          searchMovies(term).then((res) => setMovies(res.data.results))
+          }
+        }
+      }
       />
       <Button
         variant="contained"
