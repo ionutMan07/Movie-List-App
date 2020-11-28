@@ -1,27 +1,42 @@
 import React from 'react'
-import './App.css';
-import Header from './shared/Header'
-import SearchBox from './search/SearchBox'
-import SavedMovies from './SavedMovies/SavedMovies'
+import './App.css'
 
-
+import HeaderSearchAppBar from './shared/Header'
+import SavedMovies from './savedMovies/SavedMovies'
 class App extends React.Component {
 
-  state = {
-    savedMovies: []
+constructor(props) {
+  super(props)
+  const movies = JSON.parse(window.localStorage.getItem('saved-movies'))
+  if (movies && Array.isArray(movies)) {
+    this.state = {
+      movies,
+    }
+  } else {
+    this.state = {
+      movies: [],
+    }
   }
-handleAddMovie = (movie)=>{
-   const movies = this.state.savedMovies.concat(movie)
-   this.setState({
-     savedMovies: movies
-   })
+}
+
+  handleAddMovie = (movie) => {
+    const movies = this.state.savedMovies
+    this.setState({
+      savedMovies: [...movies, movie ]
+    }, 
+    () => {
+      window.localStorage.setItem(
+        'saved-movies',
+        JSON.stringify(this.state.movies),
+      )
+    },
+  )
 }
 
   render() {
     return (
       <div className="App">
-        <Header />
-        <SearchBox  onMovieAdd={this.handleAddMovie}/>
+        <HeaderSearchAppBar />
         <SavedMovies savedMovies={this.state.savedMovies} />
       </div>
     )
