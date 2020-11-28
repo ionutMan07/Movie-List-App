@@ -20,9 +20,9 @@ constructor(props) {
 }
 
   handleAddMovie = (movie) => {
-    const movies = this.state.savedMovies
+    const movies = this.state.movies
     this.setState({
-      savedMovies: [...movies, movie ]
+      movies: [...movies, movie ]
     }, 
     () => {
       window.localStorage.setItem(
@@ -36,10 +36,10 @@ constructor(props) {
   render() {
     return (
       <div className="App">
-        <HeaderSearchAppBar />
-        <SavedMovies savedMovies={this.state.savedMovies} />
+        <HeaderSearchAppBar onMovieAdd = {this.handleAddMovie} />
+        <SavedMovies savedMovies={this.state.movies} />
       </div>
-    )
+    );
   }
 }
 
