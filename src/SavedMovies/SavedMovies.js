@@ -15,9 +15,12 @@ import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Rating from "@material-ui/lab/Rating";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345
+    maxWidth: 345,
+    
+    margin: 'auto'
   },
   media: {
     height: 50,
@@ -37,7 +40,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500]
   },
   rating: {
-    marginTop: 20
+    marginTop: 10
+  },
+  main: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+
+
   }
 }));
 
@@ -46,7 +56,7 @@ const MovieItem = (props) => {
   const [value, setValue] = React.useState(2);
 
   const movie = props.movie
-  const imgUrl = `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+  const imgUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
   return (
     
 <Card className={classes.root}>
@@ -93,12 +103,12 @@ const MovieItem = (props) => {
 }
 
 const SavedMovies = (props) => {
-
+  const classes = useStyles();
   
   return (
     <div>
       {props.savedMovies && props.savedMovies.length > 0 ? (
-        <ul >
+        <ul className = {classes.main}>
           {props.savedMovies.map((movie) => (
             <MovieItem movie={movie} />
           ))}
