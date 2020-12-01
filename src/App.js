@@ -1,46 +1,19 @@
-import React from 'react'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import MovieList from './Components/MovieList';
+import { searchMovies } from '../shared/API';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
-import HeaderSearchAppBar from './shared/Header'
-import SavedMovies from './savedMovies/SavedMovies'
-class App extends React.Component {
+const App = () => {
+  const [movies, setMovies] = useState([]);
 
-constructor(props) {
-  super(props)
-  const movies = JSON.parse(window.localStorage.getItem('saved-movies'))
-  if (movies && Array.isArray(movies)) {
-    this.state = {
-      movies,
-    }
-  } else {
-    this.state = {
-      movies: [],
-    }
-  }
+  return (
+  <div className= 'container-fluid' 'movie-app'>
+    <div className = 'row'>
+    <MovieList movies = {movies} />
+    </div>
+  </div>
+  );
 }
 
-  handleAddMovie = (movie) => {
-    const movies = this.state.movies
-    this.setState({
-      movies: [...movies, movie ]
-    }, 
-    () => {
-      window.localStorage.setItem(
-        'saved-movies',
-        JSON.stringify(this.state.movies),
-      )
-    },
-  )
-}
-
-  render() {
-    return (
-      <div className="App">
-        <HeaderSearchAppBar onMovieAdd = {this.handleAddMovie} />
-        <SavedMovies savedMovies={this.state.movies} />
-      </div>
-    );
-  }
-}
-
-export default App
+export default App;
