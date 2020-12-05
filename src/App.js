@@ -81,7 +81,7 @@ const App = () => {
           movies={favorites}
           handleFavoritesClick={removeFavoriteMovie}
           favoriteComponent={RemoveFavorites}
-        />here is my favorite list
+        />
       </div>
 
     </div>
