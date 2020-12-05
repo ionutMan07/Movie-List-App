@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import MovieList from './Components/MovieList';
-// import { searchMovies } from './shared/API';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import HeaderSearchAppBar from './shared/Header';
 import AddFavorites from './Components/AddFavorites';
 import RemoveFavorites from './Components/RemoveFavorites';
+
 
 // import axios from 'axios';
 
@@ -57,7 +57,8 @@ const App = () => {
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
   };
-
+  
+  
   return (
     <div className="container-fluid movie-app">
       <HeaderSearchAppBar
@@ -65,7 +66,7 @@ const App = () => {
         setSearchValue={setSearchValue}
       />
 
-      <h1>Movie List</h1>
+      <h3>Movie list 🍿</h3>
       <div className="row">
         <MovieList
           movies={movies}
@@ -73,16 +74,16 @@ const App = () => {
           favoriteComponent={AddFavorites}
         />
       </div>
-      <h1>Favorites</h1>
+      <h3>Favorites 💖</h3>
       <div className="row d-flex align-items-center mt-4 mb-4"></div>
       <div className="row">
         <MovieList
           movies={favorites}
           handleFavoritesClick={removeFavoriteMovie}
           favoriteComponent={RemoveFavorites}
-        />
-        
+        />here is my favorite list
       </div>
+
     </div>
   );
 };
