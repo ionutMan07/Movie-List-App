@@ -1,46 +1,91 @@
-import React from 'react'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import MovieList from './Components/MovieList';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import HeaderSearchAppBar from './shared/Header';
+import AddFavorites from './Components/AddFavorites';
+import RemoveFavorites from './Components/RemoveFavorites';
 
-import HeaderSearchAppBar from './shared/Header'
-import SavedMovies from './savedMovies/SavedMovies'
-class App extends React.Component {
 
-constructor(props) {
-  super(props)
-  const movies = JSON.parse(window.localStorage.getItem('saved-movies'))
-  if (movies && Array.isArray(movies)) {
-    this.state = {
-      movies,
+// import axios from 'axios';
+
+const App = () => {
+  const [movies, setMovies] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+  const [favorites, setFavorites] = useState([]);
+
+  const searchMovies = async (searchValue) => {
+    const apiKey = process.env.REACT_APP_API_KEY;
+    const URL = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=${searchValue}`;
+    const response = await fetch(URL);
+    const responseJson = await response.json();
+
+    if (responseJson.results) {
+      setMovies(responseJson.results);
     }
-  } else {
-    this.state = {
-      movies: [],
-    }
-  }
-}
+  };
 
-  handleAddMovie = (movie) => {
-    const movies = this.state.movies
-    this.setState({
-      movies: [...movies, movie ]
-    }, 
-    () => {
-      window.localStorage.setItem(
-        'saved-movies',
-        JSON.stringify(this.state.movies),
-      )
-    },
-  )
-}
+  useEffect(() => {
+    searchMovies(searchValue);
+  }, [searchValue]);
 
-  render() {
-    return (
-      <div className="App">
-        <HeaderSearchAppBar onMovieAdd = {this.handleAddMovie} />
-        <SavedMovies savedMovies={this.state.movies} />
-      </div>
+  useEffect(() => {
+    const movieFavorites = JSON.parse(
+      localStorage.getItem('react-movie-app-favorites')
     );
-  }
-}
 
-export default App
+    if (movieFavorites) {
+      setFavorites(movieFavorites);
+    }
+  }, []);
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem('react-movie-app-favorites', JSON.stringify(items));
+  };
+
+  const addFavoriteMovie = (movie) => {
+    const newFavoriteList = [...favorites, movie];
+    setFavorites(newFavoriteList);
+    saveToLocalStorage(newFavoriteList);
+  };
+
+  const removeFavoriteMovie = (movie) => {
+    const newFavoriteList = favorites.filter(
+      (favorite) => favorite.id !== movie.id
+    );
+
+    setFavorites(newFavoriteList);
+    saveToLocalStorage(newFavoriteList);
+  };
+  
+  
+  return (
+    <div className="container-fluid movie-app">
+      <HeaderSearchAppBar
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
+
+      <h3>Movie list 🍿</h3>
+      <div className="row">
+        <MovieList
+          movies={movies}
+          handleFavoritesClick={addFavoriteMovie}
+          favoriteComponent={AddFavorites}
+        />
+      </div>
+      <h3>Favorites 💖</h3>
+      <div className="row d-flex align-items-center mt-4 mb-4"></div>
+      <div className="row">
+        <MovieList
+          movies={favorites}
+          handleFavoritesClick={removeFavoriteMovie}
+          favoriteComponent={RemoveFavorites}
+        />here is my favorite list
+      </div>
+
+    </div>
+  );
+};
+
+export default App;
