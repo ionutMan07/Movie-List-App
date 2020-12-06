@@ -7,7 +7,7 @@ const FavoritesList = (props) => {
   return (
     <>
       {props.movies.map((movie) => (
-        <div className="image-container d-flex justify-content-center m-3">
+        <div className="image-container d-flex justify-content-center m-2">
           <img
             src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
             alt={movie.title}
