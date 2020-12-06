@@ -62,15 +62,14 @@ const App = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <h3>Movie list 🍿</h3>
       <div className="row">
         <MovieList
           movies={movies}
           handleFavoritesClick={addFavoriteMovie}
         />
       </div>
-      <h3>Favorites 💖</h3>
-      <div className="row d-flex align-items-center mt-4 mb-4"></div>
+      <h3 className= 'ml-4'> Favorites 💖</h3>
+      <div className="row d-flex align-items-center mt-2 mb-2"></div>
       <div className="row">
         <FavoritesList
           movies={favorites}
