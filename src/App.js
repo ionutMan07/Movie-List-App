@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import MovieList from './Components/MovieList';
+import HeaderSearchBar from './Components/Header';
+import FavoritesList from './Components/FavoritesList';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import HeaderSearchAppBar from './shared/Header';
-import AddFavorites from './Components/AddFavorites';
-import RemoveFavorites from './Components/RemoveFavorites';
+import './Styles/App.css';
 
-
-// import axios from 'axios';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -61,26 +58,23 @@ const App = () => {
   
   return (
     <div className="container-fluid movie-app">
-      <HeaderSearchAppBar
+      <HeaderSearchBar
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-
       <h3>Movie list 🍿</h3>
       <div className="row">
         <MovieList
           movies={movies}
           handleFavoritesClick={addFavoriteMovie}
-          favoriteComponent={AddFavorites}
         />
       </div>
       <h3>Favorites 💖</h3>
       <div className="row d-flex align-items-center mt-4 mb-4"></div>
       <div className="row">
-        <MovieList
+        <FavoritesList
           movies={favorites}
           handleFavoritesClick={removeFavoriteMovie}
-          favoriteComponent={RemoveFavorites}
         />
       </div>
 

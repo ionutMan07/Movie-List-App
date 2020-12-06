@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-// import StarIcon from '@material-ui/icons/StarOutlined';
-import Ratings from './Ratings';
+import React from 'react';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const MovieList = (props) => {
-  const FavoriteComponent = props.favoriteComponent;
-
   return (
     <>
       {props.movies.map((movie) => (
@@ -14,14 +11,16 @@ const MovieList = (props) => {
             alt={movie.title}
           ></img>
           <div
-            onClick={() => props.handleFavoritesClick(movie)}
             className="overlay align-items-center justify-content-center"
+            onClick={() => props.handleFavoritesClick(movie)}
+            color="secondary"
           >
-            <FavoriteComponent />
-
-            <div className="align-items-center justify-content-center">
-              <Ratings />
-            </div>
+            Add to Favorites
+            <FavoriteIcon
+              className="ml-4"
+              onClick={() => props.handleFavoritesClick(movie)}
+              color="secondary"
+            />
           </div>
         </div>
       ))}

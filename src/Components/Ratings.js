@@ -8,7 +8,7 @@ const Ratings = () => {
   const [hover, setHover] = useState(null);
 
   const saveToLocalStorage = (items) => {
-    localStorage.setItem('react-movie-app-favorites', JSON.stringify(items));
+    localStorage.setItem('ratings', JSON.stringify(items));
   };
   const saveRating = (item) => {
     setRating(item);
@@ -25,7 +25,7 @@ const Ratings = () => {
               type="radio"
               name="rating"
               value={ratingValue}
-              onClick={() => saveRating(ratingValue)}
+              onClick={() => setRating(ratingValue)}
               
             />
             <StarIcon
@@ -33,6 +33,7 @@ const Ratings = () => {
               color={ratingValue <= (hover || rating) ? 'primary' : 'secondary'}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(null)}
+              
             />
           </label>
         );
