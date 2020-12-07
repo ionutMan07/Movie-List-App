@@ -39,6 +39,8 @@ input[type='radio'] {
 }
 .star {
 	cursor: pointer;
-	fill: yellow;
 	color: yellow;	
+}
+.regularStar {
+	cursor: pointer;
 }
