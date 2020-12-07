@@ -11,7 +11,7 @@ const MovieList = (props) => {
       {filterMovies.map((movie) => (
         <div className="image-container d-flex justify-content-center m-3">
           <img
-            className="rounded mx-auto d-block"
+            className="rounded mx-auto d-block item"
             src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
             alt={movie.title}
           ></img>

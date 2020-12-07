@@ -43,3 +43,7 @@ input[type='radio'] {
 .regularStar {
   cursor: pointer;
 }
+.item {
+  width: 250px;
+  height: 300px;
+}
