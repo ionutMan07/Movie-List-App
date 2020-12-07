@@ -2,9 +2,13 @@ import React from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const MovieList = (props) => {
+
+  const filterMovies = props.movies.filter(movie => movie.poster_path !==null)
+
   return (
     <>
-      {props.movies.map((movie) => (
+    
+      {filterMovies.map((movie) => (
         <div className="image-container d-flex justify-content-center m-3">
           <img
           className='rounded mx-auto d-block'

@@ -30,7 +30,7 @@ const Ratings = () => {
             />
             <StarIcon
               className="star"
-              color={ratingValue <= (hover || rating) ? 'primary' : 'secondary'}
+              color={ratingValue <= (hover || rating) ? 'secondary' : 'primary'}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(null)}
               
