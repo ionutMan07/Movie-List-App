@@ -2,16 +2,16 @@ import React from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const MovieList = (props) => {
-
-  const filterMovies = props.movies.filter(movie => movie.poster_path !==null)
+  const filterMovies = props.movies.filter(
+    (movie) => movie.poster_path !== null
+  );
 
   return (
     <>
-    
       {filterMovies.map((movie) => (
         <div className="image-container d-flex justify-content-center m-3">
           <img
-          className='rounded mx-auto d-block'
+            className="rounded mx-auto d-block"
             src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
             alt={movie.title}
           ></img>
