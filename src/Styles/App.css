@@ -7,10 +7,7 @@ body {
 	justify-content: space-around;
 	flex-wrap: wrap;
 }
-.imag {
-	width: 100px;
-	height: 200px;
-}
+
 .image-container {
 	position: relative;
 	transition: transform 0.2s;

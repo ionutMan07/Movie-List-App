@@ -5,7 +5,6 @@ import FavoritesList from './Components/FavoritesList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styles/App.css';
 
-
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
@@ -54,8 +53,7 @@ const App = () => {
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
   };
-  
-  
+
   return (
     <div className="container-fluid movie-app">
       <HeaderSearchBar
@@ -63,12 +61,9 @@ const App = () => {
         setSearchValue={setSearchValue}
       />
       <div className="row">
-        <MovieList
-          movies={movies}
-          handleFavoritesClick={addFavoriteMovie}
-        />
+        <MovieList movies={movies} handleFavoritesClick={addFavoriteMovie} />
       </div>
-      <h3 className= 'ml-4'> Favorites 💖</h3>
+      <h3 className="ml-4"> Favorites 💖</h3>
       <div className="row d-flex align-items-center mt-2 mb-2"></div>
       <div className="row">
         <FavoritesList
@@ -76,7 +71,6 @@ const App = () => {
           handleFavoritesClick={removeFavoriteMovie}
         />
       </div>
-
     </div>
   );
 };
