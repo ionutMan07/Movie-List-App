@@ -3,6 +3,7 @@ import TrashIcon from '@material-ui/icons/Delete';
 import Ratings from './Ratings';
 
 const FavoritesList = (props) => {
+  
   return (
     <>
       {props.movies.map((movie) => (
@@ -19,7 +20,7 @@ const FavoritesList = (props) => {
               onClick={() => props.handleFavoritesClick(movie)}
             />
             <div className="align-items-center justify-content-center">
-              <Ratings />
+              <Ratings movie={movie}/>
             </div>
           </div>
         </div>

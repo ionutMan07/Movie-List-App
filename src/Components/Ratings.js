@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StarIcon from '@material-ui/icons/StarOutlined';
 
-const Ratings = () => {
-  const [rating, setRating] = useState(null);
+const useStateWithLocalStorage =  (local) => {
+  const [rating, setRating] = useState(
+    localStorage.getItem(local) || null);
+ 
+  useEffect(() => {
+    localStorage.setItem(local, rating);
+  }, [rating]);
+ 
+  return [rating, setRating];
+};
+
+const Ratings = (props) => {
+  const [rating, setRating] = useStateWithLocalStorage(props.movie.id);
   const [hover, setHover] = useState(null);
-
-  // const saveToLocalStorage = (items) => {
-  //   localStorage.setItem('ratings', JSON.stringify(items));
-  // };
-  // const saveRating = (item) => {
-  //   setRating(item);
-  //   return saveToLocalStorage(rating)
-  // }
-
+  
+  const setRatings = event => setRating(event.target.value);
+ 
   return (
     <>
       {[...Array(5)].map((star, index) => {
@@ -23,9 +28,10 @@ const Ratings = () => {
               type="radio"
               name="rating"
               value={ratingValue}
-              onClick={() => setRating(ratingValue)}
+              onClick={setRatings}
             />
             <StarIcon
+              value={rating}
               className={
                 ratingValue <= (hover || rating) ? 'star' : 'regularStar'
               }
