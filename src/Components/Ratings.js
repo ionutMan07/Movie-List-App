@@ -7,7 +7,7 @@ const useStateWithLocalStorage =  (local) => {
  
   useEffect(() => {
     localStorage.setItem(local, rating);
-  }, [rating]);
+  }, [rating,local]);
  
   return [rating, setRating];
 };

@@ -60,7 +60,7 @@ const App = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <div className="row">Movie List
+      <div className="row">
         <MovieList movies={movies} handleFavoritesClick={addFavoriteMovie} />
       </div>
       <h3 className="ml-4"> Favorites 💖</h3>
