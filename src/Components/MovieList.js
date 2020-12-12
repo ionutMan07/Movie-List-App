@@ -20,6 +20,7 @@ const MovieList = (props) => {
             onClick={() => props.handleFavoritesClick(movie)}
             color="secondary"
           >
+            <p><span><b>Release: </b>{movie.release_date}</span><span><b> Rated:</b> {movie.vote_average}</span></p>
             Add to Favorites
             <FavoriteIcon
               className="ml-4"
