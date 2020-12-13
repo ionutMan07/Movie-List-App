@@ -38,6 +38,19 @@ const App = () => {
   const saveToLocalStorage = (items) => {
     localStorage.setItem('react-movie-app-favorites', JSON.stringify(items));
   };
+  const localKey = JSON.parse(
+    localStorage.getItem('react-movie-app-favorites'));
+  const checkAndAddFavoriteMovie = (movie) => {
+      if(localKey){
+    if(localKey.some(item => item.id === movie.id)){
+      alert('This movie already present in favorite list')
+  } else{
+      addFavoriteMovie(movie);
+  }
+}else{
+  addFavoriteMovie(movie);
+}
+  };
 
   const addFavoriteMovie = (movie) => {
     const newFavoriteList = [...favorites, movie];
@@ -61,7 +74,10 @@ const App = () => {
         setSearchValue={setSearchValue}
       />
       <div className="row">
-        <MovieList movies={movies} handleFavoritesClick={addFavoriteMovie} />
+        <MovieList
+          movies={movies}
+          handleFavoritesClick={checkAndAddFavoriteMovie}
+        />
       </div>
       <h3 className="ml-4"> Favorites 💖</h3>
       <div className="row">
