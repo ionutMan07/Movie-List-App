@@ -4,12 +4,34 @@ import HeaderSearchBar from './Components/Header';
 import FavoritesList from './Components/FavoritesList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styles/App.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    color: 'black',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [favorites, setFavorites] = useState([]);
-  const [isHidden, setHidden] = useState(true)
+  // const [isHidden, setHidden] = useState(true)
+  const [open, setOpen] = useState(false);
+
+  const classes = useStyles();
 
   const searchMovies = async (searchValue) => {
     const apiKey = process.env.REACT_APP_API_KEY;
@@ -40,26 +62,40 @@ const App = () => {
     localStorage.setItem('react-movie-app-favorites', JSON.stringify(items));
   };
   const localKey = JSON.parse(
-    localStorage.getItem('react-movie-app-favorites'));
+    localStorage.getItem('react-movie-app-favorites')
+  );
 
   const checkAndAddFavoriteMovie = (movie) => {
-      if(localKey){
-    if(localKey.some(item => item.id === movie.id)){
-      alert('This movie already present in favorite list')
-  } else{
+    if (localKey) {
+      if (localKey.some((item) => item.id === movie.id)) {
+        alert('Already in favorite list!');
+      } else {
+        addFavoriteMovie(movie);
+      }
+    } else {
       addFavoriteMovie(movie);
-  }
-}else{
-  addFavoriteMovie(movie);
-}
+    }
   };
-const hidden = isHidden? 'hidden': 'show';
+  const handleOpen = () => {
+    console.log('open');
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    console.log('close');
+    setOpen(false);
+  };
+  // const hidden = isHidden? 'hidden': 'show ';
 
   const addFavoriteMovie = (movie) => {
     const newFavoriteList = [...favorites, movie];
-    setHidden(false);
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
+    handleOpen();
+    // handleClose();
+    // setHidden(false);
+    // setTimeout(() => setHidden(true)
+    // ,2000);
   };
 
   const removeFavoriteMovie = (movie) => {
@@ -80,7 +116,6 @@ const hidden = isHidden? 'hidden': 'show';
       <div className="row">
         <MovieList
           movies={movies}
-          hidden = {hidden}
           handleFavoritesClick={checkAndAddFavoriteMovie}
         />
       </div>
@@ -91,6 +126,27 @@ const hidden = isHidden? 'hidden': 'show';
           handleFavoritesClick={removeFavoriteMovie}
         />
       </div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title">Your movie</h2>
+            <p id="transition-modal-description">
+              Has been added to Favorite List
+            </p>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 };

@@ -54,4 +54,6 @@ input[type='radio'] {
 .show {
     padding: 50px;
     display: block;
+    transform: scale(0.5);
+    transform: scale(1.1);
   }
