@@ -19,7 +19,7 @@ const MovieList = (props) => {
             className="overlay align-items-center justify-content-center"
             onClick={() => props.handleFavoritesClick(movie)}
             color="secondary"
-          >
+          ><div class={props.hidden}><span>Added to Favorites</span></div>
             <p><span><b>Release: </b>{movie.release_date}</span><span><b> Rated:</b> {movie.vote_average}</span></p>
             Add to Favorites
             <FavoriteIcon

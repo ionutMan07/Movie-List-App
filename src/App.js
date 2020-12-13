@@ -9,6 +9,7 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [favorites, setFavorites] = useState([]);
+  const [isHidden, setHidden] = useState(true)
 
   const searchMovies = async (searchValue) => {
     const apiKey = process.env.REACT_APP_API_KEY;
@@ -40,6 +41,7 @@ const App = () => {
   };
   const localKey = JSON.parse(
     localStorage.getItem('react-movie-app-favorites'));
+
   const checkAndAddFavoriteMovie = (movie) => {
       if(localKey){
     if(localKey.some(item => item.id === movie.id)){
@@ -51,9 +53,11 @@ const App = () => {
   addFavoriteMovie(movie);
 }
   };
+const hidden = isHidden? 'hidden': 'show';
 
   const addFavoriteMovie = (movie) => {
     const newFavoriteList = [...favorites, movie];
+    setHidden(false);
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
   };
@@ -76,6 +80,7 @@ const App = () => {
       <div className="row">
         <MovieList
           movies={movies}
+          hidden = {hidden}
           handleFavoritesClick={checkAndAddFavoriteMovie}
         />
       </div>
