@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.2.0",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "npm-watch": "^0.7.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.1.0",
@@ -19,7 +20,16 @@
     "ruby": "^0.6.1",
     "web-vitals": "^0.2.4"
   },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,jsx"
+    }
+  },
   "scripts": {
+    "watch": "npm-watch",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
