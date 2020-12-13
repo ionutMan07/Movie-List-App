@@ -47,13 +47,4 @@ input[type='radio'] {
   width: 250px;
   height: 300px;
 }
-.hidden{
-  padding: 50px;
-  display: none;
-}
-.show {
-    padding: 50px;
-    display: block;
-    transform: scale(0.5);
-    transform: scale(1.1);
-  }
+

@@ -1,9 +1,6 @@
 import React from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-
-
-
 const MovieList = (props) => {
   const filterMovies = props.movies.filter(
     (movie) => movie.poster_path !== null
@@ -23,7 +20,6 @@ const MovieList = (props) => {
             onClick={() => props.handleFavoritesClick(movie)}
             color="secondary"
           >
-            {/* <div class={props.hidden}><span>Added to Favorites</span></div> */}
             <p><span><b>Release: </b>{movie.release_date}</span><span><b> Rated:</b> {movie.vote_average}</span></p>
             Add to Favorites
             <FavoriteIcon

@@ -2,24 +2,26 @@ import React, { useState, useEffect } from 'react';
 import MovieList from './Components/MovieList';
 import HeaderSearchBar from './Components/Header';
 import FavoritesList from './Components/FavoritesList';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Styles/App.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Styles/App.css';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
-    color: 'black',
+    color: 'white',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+
+    borderRadius: '10px',
     border: '2px solid #000',
-    boxShadow: theme.shadows[5],
+    boxShadow: theme.shadows[1],
     padding: theme.spacing(2, 4, 3),
   },
 }));
@@ -28,7 +30,6 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [favorites, setFavorites] = useState([]);
-  // const [isHidden, setHidden] = useState(true)
   const [open, setOpen] = useState(false);
 
   const classes = useStyles();
@@ -68,7 +69,7 @@ const App = () => {
   const checkAndAddFavoriteMovie = (movie) => {
     if (localKey) {
       if (localKey.some((item) => item.id === movie.id)) {
-        alert('Already in favorite list!');
+        handleOpen();
       } else {
         addFavoriteMovie(movie);
       }
@@ -77,25 +78,18 @@ const App = () => {
     }
   };
   const handleOpen = () => {
-    console.log('open');
     setOpen(true);
   };
 
   const handleClose = () => {
-    console.log('close');
     setOpen(false);
   };
-  // const hidden = isHidden? 'hidden': 'show ';
 
   const addFavoriteMovie = (movie) => {
     const newFavoriteList = [...favorites, movie];
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
     handleOpen();
-    // handleClose();
-    // setHidden(false);
-    // setTimeout(() => setHidden(true)
-    // ,2000);
   };
 
   const removeFavoriteMovie = (movie) => {
@@ -119,7 +113,7 @@ const App = () => {
           handleFavoritesClick={checkAndAddFavoriteMovie}
         />
       </div>
-      <h3 className="ml-4"> Favorites 💖</h3>
+      <h3 className="ml-4"> Favoritessss 💖</h3>
       <div className="row">
         <FavoritesList
           movies={favorites}
@@ -140,10 +134,9 @@ const App = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Your movie</h2>
-            <p id="transition-modal-description">
-              Has been added to Favorite List
-            </p>
+            <h5 id="transition-modal-title">
+              Movie has been added / Movie already in Favorites
+            </h5>
           </div>
         </Fade>
       </Modal>
