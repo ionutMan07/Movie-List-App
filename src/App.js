@@ -70,6 +70,7 @@ const App = () => {
     if (localKey) {
       if (localKey.some((item) => item.id === movie.id)) {
         handleOpen();
+        setTimeout(() => handleClose(), 1500);
       } else {
         addFavoriteMovie(movie);
       }
@@ -90,6 +91,7 @@ const App = () => {
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
     handleOpen();
+    setTimeout(() => handleClose(), 1000);
   };
 
   const removeFavoriteMovie = (movie) => {
