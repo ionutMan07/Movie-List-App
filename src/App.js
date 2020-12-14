@@ -70,7 +70,7 @@ const App = () => {
     if (localKey) {
       if (localKey.some((item) => item.id === movie.id)) {
         handleOpen();
-        setTimeout(() => handleClose(), 1500);
+        setTimeout(() => handleClose(), 1700);
       } else {
         addFavoriteMovie(movie);
       }

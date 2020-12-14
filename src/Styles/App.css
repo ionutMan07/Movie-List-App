@@ -1,5 +1,5 @@
 body {
-  background: #141414;
+  background: linear-gradient(to right, #00aaff, #00ff6c);
   color: #ffffff;
 }
 
@@ -34,7 +34,7 @@ body {
   text-align: center;
 }
 input[type='radio'] {
- display: none; 
+  display: none;
 }
 .star {
   cursor: pointer;
@@ -47,4 +47,3 @@ input[type='radio'] {
   width: 250px;
   height: 300px;
 }
-
