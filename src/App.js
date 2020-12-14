@@ -115,7 +115,7 @@ const App = () => {
           handleFavoritesClick={checkAndAddFavoriteMovie}
         />
       </div>
-      <h3 className="ml-4"> Favorites 💖</h3>
+      <h3 className="ml-4"> Favoritess 💖</h3>
       <div className="row">
         <FavoritesList
           movies={favorites}
