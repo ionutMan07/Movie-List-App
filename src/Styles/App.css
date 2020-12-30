@@ -3,6 +3,10 @@ body {
   color: #ffffff;
 }
 
+.dark {
+  background: #141414;
+}
+
 .movie-app > .row {
   justify-content: space-around;
   flex-wrap: wrap;
