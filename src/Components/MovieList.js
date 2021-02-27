@@ -5,7 +5,7 @@ const MovieList = (props) => {
   const filterMovies = props.movies.filter(
     (movie) => movie.poster_path !== null
   );
-  
+
   return (
     <>
       {filterMovies.map((movie) => (
@@ -16,17 +16,26 @@ const MovieList = (props) => {
             alt={movie.title}
           ></img>
           <div
-            className= 'overlay align-items-center justify-content-center'
+            className="overlay align-items-center justify-content-center"
             onClick={() => props.handleFavoritesClick(movie)}
             color="secondary"
           >
-            <p><span><b>Release: </b>{movie.release_date}</span><span><b> Rated:</b> {movie.vote_average}</span></p>
+            <p>
+              <span>
+                <b>Release: </b>
+                {movie.release_date}
+              </span>
+              <span>
+                <b> Rated:</b> {movie.vote_average}
+              </span>
+            </p>
             Add to Favorites
             <FavoriteIcon
               className="ml-4"
               onClick={() => props.handleFavoritesClick(movie)}
               color="secondary"
-            />          </div>
+            />{' '}
+          </div>
         </div>
       ))}
     </>

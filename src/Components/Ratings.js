@@ -3,14 +3,12 @@ import StarIcon from '@material-ui/icons/StarOutlined';
 
 const useStateWithLocalStorage = (local) => {
   const [rating, setRating] = useState(localStorage.getItem(local) || null);
-
   useEffect(() => {
     localStorage.setItem(local, rating);
   }, [rating, local]);
 
   return [rating, setRating];
 };
-
 const Ratings = (props) => {
   const [rating, setRating] = useStateWithLocalStorage(props.movie.id);
   const [hover, setHover] = useState(null);
